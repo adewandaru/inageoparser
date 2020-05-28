@@ -1708,7 +1708,7 @@ def disambiguate_document_sm(sents):
                 
     print("max adm level", max_adm_lvl)
     
-    #then we modify the ismax field
+    #then we modify the ismax (Smallest Administrative Level) field
     for idx, t in enumerate(toponyms):        
         print (toponyms_map[idx])
         sentidx = toponyms_map[idx][0]
@@ -1940,7 +1940,7 @@ def predict(input_str):
     
     mode = "ploc" #4th predict, event mode
     
-    disambiguate_document_sm( sents ) # disambiguate document will piggyback the recognized toponyms with administrative lev and ismax feature
+    disambiguate_document_sm( sents ) # disambiguate document will piggyback the recognized toponyms with administrative lev and ismax (smallest administrative level ) feature
     
     X = [sent2features(s, mode) for s in sents]
     y = [sent2labels(s, mode) for s in sents]
@@ -2141,6 +2141,9 @@ def visualize():
     DKI_UID = ALL.query('NAME_2 == "Jakarta Timur" or NAME_2 == "Jakarta Selatan"').set_index('UID')
     DKI_UID["value"] = 0
     
+    water = gpd.read_file('..\Exp-16-Geonames\waterways.geojson')
+    
+    
     locs = collect('LOC','ploc','LOC')
     args = collect('ARG', 'arg', 'Height-Arg')
     match_entities(DKI_UID, locs, args)
@@ -2149,11 +2152,16 @@ def visualize():
 
 
 def plots(gpd_t):  
-    ax = gpd_t.plot(column='value', cmap='OrRd', figsize=(30,30), edgeColor="black")
+    ax = gpd_t.plot(column='value', cmap='OrRd', figsize=(100,100), edgeColor="black")
+    gpd_t.apply(lambda x: ax.annotate(s=x.NAME_4, fontsize=40, xy=x.geometry.centroid.coords[0], ha='center'),axis=1);
+    return ax
+
+def plots2(gpd_t):  
+    gpd_t = gpd_t.to_crs(water.crs)
+    ax = gpd_t.plot(column='value', cmap='OrRd', figsize=(100,100), edgeColor="black")
+    water.plot( ax = ax,  color='blue')
     gpd_t.apply(lambda x: ax.annotate(s=x.NAME_4, fontsize=10, xy=x.geometry.centroid.coords[0], ha='center'),axis=1);
-    
-
-
+    return ax
 
 def train():
     train_crf(mode='entity')
