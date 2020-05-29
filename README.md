@@ -6,7 +6,8 @@ Extending Geoparsing with Event Extraction and Pseudo Location Entity Identifica
 ## contents
 Corpus for Extended Geoparsing with Event Extraction (Indonesian): (smallcorpus.txt)  
 Result of Evaluation (RESULT V.txt)  
-Main Sources (topicmerging.py and event-geoparser.py)  
-Aggregated Topic Model pretrained (mergedtopics.pickle)  
+Main Sources (event-geoparser.py)  
+Aggregated Topic Model (topicmerging.py) 
+and its pretrained model (mergedtopics.pickle)  
 
 
