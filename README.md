@@ -12,7 +12,7 @@ and its pretrained model (mergedtopics.pickle)
 
 ## how to run
 
-~~~
+```
 import inageoparser
 test = """
 Kali Ciliwung Meluap, 17 RW di 8 Kelurahan Jakarta Terendam Banjir
@@ -42,5 +42,5 @@ load_crf()
 # do the parsing
 predict(test)
 
-~~~
+```
 
