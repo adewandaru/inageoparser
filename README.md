@@ -11,6 +11,8 @@ Aggregated Topic Model (topicmerging.py)
 and its pretrained model (mergedtopics.pickle)  
 
 ## how to run
+
+~~~
 import inageoparser
 test = """
 Kali Ciliwung Meluap, 17 RW di 8 Kelurahan Jakarta Terendam Banjir
@@ -34,6 +36,11 @@ Kepala Pusat Data dan Informasi Kebencanaan Badan Penanggulangan Bencana Daerah 
 1 RW Kelurahan Pengadegan, Jakarta Selatan, ketinggian air 10-50 sentimeter
 
 """
+
+# load the pre-trained model here
 load_crf()
+# do the parsing
 predict(test)
+
+~~~
 
