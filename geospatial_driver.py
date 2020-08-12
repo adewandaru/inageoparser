@@ -8,10 +8,7 @@ import geopandas as gpd
 import pandas as pd
 import re 
 
-'''
-cililitan,(-6.386314411858343, 106.42243148751925)
-condet, kemang, puncak
-'''
+
 #L0 = 
 #L1 = gpd.read_file('D:\Riset\Gatotkaca\Exp-16-Geonames\gadm36_USA_shp\gadm36_USA_1.shp')
 #L2 = gpd.read_file('D:\Riset\Gatotkaca\Exp-16-Geonames\gadm36_USA_shp\gadm36_USA_2.shp')
@@ -27,7 +24,7 @@ if  '__geospatial__' not in vars() and '__geospatial__' not in globals():
     NAMES = [NAME0, NAME1, NAME2, NAME3, NAME4]
 
     COUNTRIES = []
-    COUNTRIES = pd.read_csv(r"..\translations\COUNTRIES-ID.csv")  
+    COUNTRIES = pd.read_csv(r"translations\COUNTRIES-ID.csv")  
     COUNTRIES = COUNTRIES.set_index('ID')
     
     US = pd.read_csv("uscities.csv")
@@ -36,6 +33,28 @@ if  '__geospatial__' not in vars() and '__geospatial__' not in globals():
     __geospatial__ = True
     
 print("GADM database loaded.")
+
+def reload():
+    global ALL
+    global NAME0,NAME1,NAME2,NAME3,NAME4,NAME5
+    global US
+    global COUNTRIES
+    print("reloading global GADM database...")
+    ALL = gpd.read_file('gadm36_shp\gadm36.shp')
+    NAME0 = ALL.set_index('NAME_0')
+    NAME1 = ALL.set_index('NAME_1')
+    NAME2 = ALL.set_index('NAME_2')
+    NAME3 = ALL.set_index('NAME_3')
+    NAME4 = ALL.set_index('NAME_4')
+    NAMES = [NAME0, NAME1, NAME2, NAME3, NAME4]
+
+    COUNTRIES = []
+    COUNTRIES = pd.read_csv(r"..\translations\COUNTRIES-ID.csv")  
+    COUNTRIES = COUNTRIES.set_index('ID')
+    
+    US = pd.read_csv("uscities.csv")
+    US = US.set_index("city")
+    
 
 def pplot2(gpd_t):   
     ax = gpd_t.plot(column='value', cmap='OrRd', figsize=(30,30))
@@ -190,8 +209,12 @@ def strip(str):
     
 
 def ambigus(t):
+    if not isinstance(t, str):
+        return
     ''' generate ambiguous place names and coordinates '''
     t = strip(t)
+    if len(t) == 0:
+        return []
     # find substitutes dictionary
     try:
         Q = SUBS[t]
@@ -205,7 +228,23 @@ def ambigus(t):
     #return set(res)
     return res
 
-
+def getambigus_indonesia():
+    uniq1 = set(list( INDONESIA.NAME_1 ))
+    uniq2 = set(list( INDONESIA.NAME_2 ))
+    uniq3 = set(list( INDONESIA.NAME_3 ))
+    uniq4 = set(list( INDONESIA.NAME_4 ))
+    alluniq = uniq1 | uniq2 | uniq3 | uniq4
+    ambigus_ = []
+    for idx, n in enumerate(alluniq):
+        try:
+            a = ambigus(n)
+            if a is not None and len(a) > 5 :
+                ambigus_.append(a)
+        except:
+            pass
+            
+    with open("ambigus.indonesia.pickle", 'wb') as f:
+        pickle.dump(crf_entity, f)
     
 def in_tol(t):
     return t in ["Cipali", "Cipularang", "Bocimi", "Purbaleunyi", "Jakarta", 
@@ -343,6 +382,71 @@ def centroid_old(df):
         return ( '['+ str( df.geometry.centroid.y ) + ',' + str( df.geometry.centroid.x ) +']' )   
     #except:
     #    print(df)
+    
+lc = []
+def centroid_coords(list_coords):
+    global lc
+    dx = 0.0
+    dy = 0.0
+    lc = list_coords
+    for (x,y) in list_coords:
+        dx = dx + x
+        dy = dy + y
+    return (dx / len(list_coords), dy / len(list_coords))
+
+lc = []
+def centroid_coords2(list_coords):
+    global lc
+    lc = list_coords
+    from shapely.geometry import MultiPoint
+    points = MultiPoint([(m[0],m[1]) for m in list_coords])
+    return (points.centroid.x, points.centroid.y)
+    
+
+import mpu
+
+def findmaxdist_adm( list_coords, list_adm ):
+    ''' implements the SpatialMinimality CentroidDistance with Adm .
+        the bigger the administrative level, it should be prioritised.
+        meaning, the more a tuple has bigger adm level, the more it should be having lesser 'distance'
+    '''
+    if verbosity >= 3:
+        print ("list_coords", list_coords)
+        print ("list_adm", list_adm)
+    (cx, cy) = centroid_coords2(list_coords)
+    maxdist = 0
+    
+    for i, (x,y) in enumerate(list_coords):
+        adm_lvl = list_adm[i]
+        cdist = (1+adm_lvl) * 100 * mpu.haversine_distance((cx, cy), (x, y))
+        if verbosity>=3:
+            print("adm_lvl=", adm_lvl, " cdist=", cdist)
+        if cdist >= maxdist:
+            maxdist = cdist
+            (mx, my) = (x, y)
+   
+    return maxdist    
+
+def findmaxdist(list_coords):
+    ''' implements the SpatialMinimality "CentroidDistance" '''
+    if verbosity >= 3:
+        print ("findmaxdist", list_coords)
+    (cx, cy) = centroid_coords2(list_coords)
+    maxdist = 0
+    
+    for (x,y) in list_coords:
+        cdist = mpu.haversine_distance((cx, cy), (x, y))
+        if cdist >= maxdist:
+            maxdist = cdist
+            (mx, my) = (x, y)
+    if verbosity>=3:
+        print ("mx, my, cx, cy, dist", (mx,my), (cx,cy), mpu.haversine_distance((mx, my), (cx,cy)))
+    return mpu.haversine_distance((mx, my), (cx,cy))
+            
+def findarea(list_coords):
+    poly = cons_poly2 ( list_coords )
+    poly_area = area(poly)
+    return poly_area
     
 def centroid(df):
     #try:

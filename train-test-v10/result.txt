@@ -1,0 +1,210 @@
+ ['B-ARG', 'I-ARG', 'B-EVE', 'I-EVE', 'B-LOC', 'I-LOC', 'B-ORG', 'I-ORG']
+train mode= entity
+entity options: gaz|postag
+              precision    recall  f1-score   support
+
+       B-ARG      0.832     0.712     0.767       222
+       I-ARG      0.824     0.739     0.779       241
+       B-EVE      0.850     0.800     0.824       120
+       I-EVE      0.824     0.609     0.700        23
+       B-LOC      0.886     0.910     0.898       145
+       I-LOC      0.898     0.964     0.930        55
+       B-ORG      0.909     0.645     0.755        62
+       I-ORG      0.792     0.576     0.667        66
+   micro avg      0.848     0.759     0.801       934
+   macro avg      0.852     0.744     0.790       934
+weighted avg      0.846     0.759     0.798       934
+
+Out[47]: 
+CRF(algorithm='lbfgs', all_possible_states=None, all_possible_transitions=True,
+    averaging=None, c=None, c1=0.12211006595342445, c2=0.030636927706643613,
+    calibration_candidates=None, calibration_eta=None,
+    calibration_max_trials=None, calibration_rate=None,
+    calibration_samples=None, delta=None, epsilon=None, error_sensitive=None,
+    gamma=None, keep_tempfiles=None, linesearch=None, max_iterations=100,
+    max_linesearch=None, min_freq=None, model_filename=None, num_memories=None,
+    pa_type=None, period=None, trainer_cls=None, variance=None, verbose=False)
+
+train mode= entity
+entity options: org_regex|arg_regex|ev_keywords|gaz|postag
+              precision    recall  f1-score   support
+
+       B-ARG      0.845     0.739     0.788       222
+       I-ARG      0.849     0.768     0.806       241
+       B-EVE      0.852     0.817     0.834       120
+       I-EVE      0.789     0.652     0.714        23
+       B-LOC      0.897     0.897     0.897       145
+       I-LOC      0.930     0.964     0.946        55
+       B-ORG      0.825     0.758     0.790        62
+       I-ORG      0.769     0.758     0.763        66
+   micro avg      0.853     0.794     0.823       934
+   macro avg      0.844     0.794     0.817       934
+weighted avg      0.852     0.794     0.821       934
+
+Out[42]: 
+CRF(algorithm='lbfgs', all_possible_states=None, all_possible_transitions=True,
+    averaging=None, c=None, c1=0.28038176491575334, c2=0.028830301003491127,
+    calibration_candidates=None, calibration_eta=None,
+    calibration_max_trials=None, calibration_rate=None,
+    calibration_samples=None, delta=None, epsilon=None, error_sensitive=None,
+    gamma=None, keep_tempfiles=None, linesearch=None, max_iterations=100,
+    max_linesearch=None, min_freq=None, model_filename=None, num_memories=None,
+    pa_type=None, period=None, trainer_cls=None, variance=None, verbose=False)
+
+
+================== event
+
+event options: gaz|postag
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      1.000     0.868     0.930        38
+    FIRE-EVENT      0.882     0.938     0.909        32
+   FLOOD-EVENT      0.794     0.794     0.794        34
+   QUAKE-EVENT      0.793     0.852     0.821        27
+     micro avg      0.869     0.863     0.866       131
+     macro avg      0.867     0.863     0.864       131
+  weighted avg      0.875     0.863     0.867       131
+
+Out[53]: 
+CRF(algorithm='lbfgs', all_possible_states=None, all_possible_transitions=True,
+    averaging=None, c=None, c1=0.389846744937611, c2=0.015589611731015824,
+    calibration_candidates=None, calibration_eta=None,
+    calibration_max_trials=None, calibration_rate=None,
+    calibration_samples=None, delta=None, epsilon=None, error_sensitive=None,
+    gamma=None, keep_tempfiles=None, linesearch=None, max_iterations=100,
+    max_linesearch=None, min_freq=None, model_filename=None, num_memories=None,
+    pa_type=None, period=None, trainer_cls=None, variance=None, verbose=False)
+
+
+Out[47]: 
+CRF(algorithm='lbfgs', all_possible_states=None, all_possible_transitions=True,
+    averaging=None, c=None, c1=0.12211006595342445, c2=0.030636927706643613,
+    calibration_candidates=None, calibration_eta=None,
+    calibration_max_trials=None, calibration_rate=None,
+    calibration_samples=None, delta=None, epsilon=None, error_sensitive=None,
+    gamma=None, keep_tempfiles=None, linesearch=None, max_iterations=100,
+    max_linesearch=None, min_freq=None, model_filename=None, num_memories=None,
+    pa_type=None, period=None, trainer_cls=None, variance=None, verbose=False)   
+
+    event options: ev_keywords|entity
+merge the X_test's word.entity feature using y_test from previous train session
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      1.000     0.974     0.987        38
+    FIRE-EVENT      0.970     1.000     0.985        32
+   FLOOD-EVENT      1.000     1.000     1.000        34
+   QUAKE-EVENT      0.964     1.000     0.982        27
+     micro avg      0.985     0.992     0.989       131
+     macro avg      0.983     0.993     0.988       131
+  weighted avg      0.985     0.992     0.989       131
+
+Out[44]: 
+CRF(algorithm='lbfgs', all_possible_states=None, all_possible_transitions=True,
+    averaging=None, c=None, c1=0.015537443105217288, c2=0.026974781855424425,
+    calibration_candidates=None, calibration_eta=None,
+    calibration_max_trials=None, calibration_rate=None,
+    calibration_samples=None, delta=None, epsilon=None, error_sensitive=None,
+    gamma=None, keep_tempfiles=None, linesearch=None, max_iterations=100,
+    max_linesearch=None, min_freq=None, model_filename=None, num_memories=None,
+    pa_type=None, period=None, trainer_cls=None, variance=None, verbose=False)
+
+
+    
+================== arg
+
+arg options: ev_keywords|entity
+merge the X_test's word.entity feature using y_test from previous train session
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.927     0.809     0.864        47
+        Vehicle-Arg      0.781     0.833     0.806        30
+         Height-Arg      1.000     0.957     0.978        46
+OfficerOfficial-Arg      0.810     0.949     0.874        99
+           Time-Arg      0.935     1.000     0.966       100
+          Place-Arg      0.941     0.927     0.934       206
+         Street-Arg      0.757     0.848     0.800        33
+       Strength-Arg      1.000     0.688     0.815        32
+
+          micro avg      0.900     0.914     0.907       593
+          macro avg      0.894     0.876     0.880       593
+       weighted avg      0.906     0.914     0.907       593
+
+Out[60]: 
+CRF(algorithm='lbfgs', all_possible_states=None, all_possible_transitions=True,
+    averaging=None, c=None, c1=0.16638435613893365, c2=0.043175029990122606,
+    calibration_candidates=None, calibration_eta=None,
+    calibration_max_trials=None, calibration_rate=None,
+    calibration_samples=None, delta=None, epsilon=None, error_sensitive=None,
+    gamma=None, keep_tempfiles=None, linesearch=None, max_iterations=100,
+    max_linesearch=None, min_freq=None, model_filename=None, num_memories=None,
+    pa_type=None, period=None, trainer_cls=None, variance=None, verbose=False)
+
+
+arg options: gaz|postag
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.667     0.596     0.629        47
+        Vehicle-Arg      0.857     0.600     0.706        30
+         Height-Arg      0.692     0.783     0.735        46
+OfficerOfficial-Arg      0.925     0.495     0.645        99
+           Time-Arg      0.926     1.000     0.962       100
+          Place-Arg      0.867     0.791     0.827       206
+         Street-Arg      0.783     0.545     0.643        33
+       Strength-Arg      0.857     0.750     0.800        32
+          micro avg      0.847     0.735     0.787       593
+          macro avg      0.822     0.695     0.743       593
+       weighted avg      0.851     0.735     0.779       593
+
+Out[88]: 
+CRF(algorithm='lbfgs', all_possible_states=None, all_possible_transitions=True,
+    averaging=None, c=None, c1=0.2151315052771163, c2=0.0024681710444784,
+    calibration_candidates=None, calibration_eta=None,
+    calibration_max_trials=None, calibration_rate=None,
+    calibration_samples=None, delta=None, epsilon=None, error_sensitive=None,
+    gamma=None, keep_tempfiles=None, linesearch=None, max_iterations=100,
+    max_linesearch=None, min_freq=None, model_filename=None, num_memories=None,
+    pa_type=None, period=None, trainer_cls=None, variance=None, verbose=False)
+
+==========================ploc
+
+train mode= ploc
+ploc options: gaz|postag
+              precision    recall  f1-score   support
+
+        PLOC      0.826     0.667     0.738       114
+         LOC      0.675     0.651     0.663        86
+   micro avg      0.754     0.660     0.704       200
+   macro avg      0.750     0.659     0.700       200
+weighted avg      0.761     0.660     0.706       200
+
+Out[96]: 
+CRF(algorithm='lbfgs', all_possible_states=None, all_possible_transitions=True,
+    averaging=None, c=None, c1=0.12921019050179205, c2=0.06680208781618409,
+    calibration_candidates=None, calibration_eta=None,
+    calibration_max_trials=None, calibration_rate=None,
+    calibration_samples=None, delta=None, epsilon=None, error_sensitive=None,
+    gamma=None, keep_tempfiles=None, linesearch=None, max_iterations=100,
+    max_linesearch=None, min_freq=None, model_filename=None, num_memories=None,
+    pa_type=None, period=None, trainer_cls=None, variance=None, verbose=False)
+
+train mode= ploc
+ploc options: ismax|arg
+merge the X_test's word.arg feature using y_pred from previous train arg and event session
+              precision    recall  f1-score   support
+
+        PLOC      0.832     0.912     0.870       114
+         LOC      0.867     0.756     0.807        86
+
+   micro avg      0.845     0.845     0.845       200
+   macro avg      0.849     0.834     0.839       200
+weighted avg      0.847     0.845     0.843       200
+
+Out[94]: 
+CRF(algorithm='lbfgs', all_possible_states=None, all_possible_transitions=True,
+    averaging=None, c=None, c1=0.3069677797900725, c2=0.1695104566069413,
+    calibration_candidates=None, calibration_eta=None,
+    calibration_max_trials=None, calibration_rate=None,
+    calibration_samples=None, delta=None, epsilon=None, error_sensitive=None,
+    gamma=None, keep_tempfiles=None, linesearch=None, max_iterations=100,
+    max_linesearch=None, min_freq=None, model_filename=None, num_memories=None,
+    pa_type=None, period=None, trainer_cls=None, variance=None, verbose=False)

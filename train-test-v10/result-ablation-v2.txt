@@ -1,0 +1,800 @@
+==================================ENTITY
+
+In [74]: ablation()
+testing # 1  options =  
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['B-ARG', 'I-ARG', 'B-EVE', 'I-EVE', 'B-LOC', 'I-LOC', 'B-ORG', 'I-ORG']
+train mode= entity
+entity options: 
+              precision    recall  f1-score   support
+
+       B-ARG      0.776     0.703     0.738       222
+       I-ARG      0.782     0.730     0.755       241
+       B-EVE      0.864     0.792     0.826       120
+       I-EVE      0.812     0.565     0.667        23
+       B-LOC      0.844     0.855     0.849       145
+       I-LOC      0.881     0.945     0.912        55
+       B-ORG      0.912     0.500     0.646        62
+       I-ORG      0.708     0.515     0.596        66
+
+   micro avg      0.811     0.729     0.768       934
+   macro avg      0.822     0.701     0.749       934
+weighted avg      0.811     0.729     0.763       934
+
+testing # 2  options =  gaz
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['B-ARG', 'I-ARG', 'B-EVE', 'I-EVE', 'B-LOC', 'I-LOC', 'B-ORG', 'I-ORG']
+train mode= entity
+entity options: gaz
+              precision    recall  f1-score   support
+
+       B-ARG      0.784     0.685     0.731       222
+       I-ARG      0.779     0.701     0.738       241
+       B-EVE      0.862     0.783     0.821       120
+       I-EVE      0.812     0.565     0.667        23
+       B-LOC      0.892     0.910     0.901       145
+       I-LOC      0.963     0.945     0.954        55
+       B-ORG      0.944     0.548     0.694        62
+       I-ORG      0.830     0.591     0.690        66
+
+   micro avg      0.834     0.733     0.781       934
+   macro avg      0.858     0.716     0.774       934
+weighted avg      0.834     0.733     0.777       934
+
+testing # 3  options =  gaz|postag
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['B-ARG', 'I-ARG', 'B-EVE', 'I-EVE', 'B-LOC', 'I-LOC', 'B-ORG', 'I-ORG']
+train mode= entity
+entity options: gaz|postag
+              precision    recall  f1-score   support
+
+       B-ARG      0.832     0.689     0.754       222
+       I-ARG      0.823     0.734     0.776       241
+       B-EVE      0.880     0.792     0.833       120
+       I-EVE      0.824     0.609     0.700        23
+       B-LOC      0.890     0.897     0.893       145
+       I-LOC      0.914     0.964     0.938        55
+       B-ORG      0.902     0.597     0.718        62
+       I-ORG      0.822     0.561     0.667        66
+
+   micro avg      0.855     0.745     0.796       934
+   macro avg      0.861     0.730     0.785       934
+weighted avg      0.853     0.745     0.793       934
+
+testing # 4  options =  org_regex|gaz|postag
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['B-ARG', 'I-ARG', 'B-EVE', 'I-EVE', 'B-LOC', 'I-LOC', 'B-ORG', 'I-ORG']
+train mode= entity
+entity options: org_regex|gaz|postag
+              precision    recall  f1-score   support
+
+       B-ARG      0.830     0.680     0.748       222
+       I-ARG      0.821     0.722     0.768       241
+       B-EVE      0.887     0.783     0.832       120
+       I-EVE      0.875     0.609     0.718        23
+       B-LOC      0.898     0.910     0.904       145
+       I-LOC      0.914     0.964     0.938        55
+       B-ORG      0.800     0.710     0.752        62
+       I-ORG      0.790     0.742     0.766        66
+
+   micro avg      0.848     0.761     0.802       934
+   macro avg      0.852     0.765     0.803       934
+weighted avg      0.847     0.761     0.800       934
+
+testing # 5  options =  org_regex|arg_regex|gaz|postag
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['B-ARG', 'I-ARG', 'B-EVE', 'I-EVE', 'B-LOC', 'I-LOC', 'B-ORG', 'I-ORG']
+train mode= entity
+entity options: org_regex|arg_regex|gaz|postag
+              precision    recall  f1-score   support
+
+       B-ARG      0.846     0.716     0.776       222
+       I-ARG      0.836     0.759     0.796       241
+       B-EVE      0.879     0.783     0.828       120
+       I-EVE      0.778     0.609     0.683        23
+       B-LOC      0.905     0.924     0.915       145
+       I-LOC      0.930     0.964     0.946        55
+       B-ORG      0.804     0.726     0.763        62
+       I-ORG      0.790     0.742     0.766        66
+
+   micro avg      0.855     0.783     0.817       934
+   macro avg      0.846     0.778     0.809       934
+weighted avg      0.853     0.783     0.815       934
+
+testing # 6  options =  org_regex|arg_regex|ev_keywords|gaz|postag
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['B-ARG', 'I-ARG', 'B-EVE', 'I-EVE', 'B-LOC', 'I-LOC', 'B-ORG', 'I-ORG']
+train mode= entity
+entity options: org_regex|arg_regex|ev_keywords|gaz|postag
+              precision    recall  f1-score   support
+
+       B-ARG      0.847     0.725     0.782       222
+       I-ARG      0.827     0.776     0.801       241
+       B-EVE      0.848     0.792     0.819       120
+       I-EVE      0.833     0.652     0.732        23
+       B-LOC      0.905     0.917     0.911       145
+       I-LOC      0.914     0.964     0.938        55
+       B-ORG      0.800     0.710     0.752        62
+       I-ORG      0.783     0.712     0.746        66
+
+   micro avg      0.849     0.787     0.817       934
+   macro avg      0.845     0.781     0.810       934
+weighted avg      0.847     0.787     0.815       934
+
+testing # 7  options =  ev_keywords
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['B-ARG', 'I-ARG', 'B-EVE', 'I-EVE', 'B-LOC', 'I-LOC', 'B-ORG', 'I-ORG']
+train mode= entity
+entity options: ev_keywords
+              precision    recall  f1-score   support
+
+       B-ARG      0.778     0.712     0.744       222
+       I-ARG      0.776     0.734     0.755       241
+       B-EVE      0.845     0.817     0.831       120
+       I-EVE      0.778     0.609     0.683        23
+       B-LOC      0.837     0.848     0.842       145
+       I-LOC      0.867     0.945     0.904        55
+       B-ORG      0.914     0.516     0.660        62
+       I-ORG      0.733     0.500     0.595        66
+
+   micro avg      0.806     0.736     0.769       934
+   macro avg      0.816     0.710     0.752       934
+weighted avg      0.806     0.736     0.765       934
+
+testing # 8  options =  ev_keywords|gaz|postag
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['B-ARG', 'I-ARG', 'B-EVE', 'I-EVE', 'B-LOC', 'I-LOC', 'B-ORG', 'I-ORG']
+train mode= entity
+entity options: ev_keywords|gaz|postag
+              precision    recall  f1-score   support
+
+       B-ARG      0.837     0.694     0.759       222
+       I-ARG      0.824     0.739     0.779       241
+       B-EVE      0.835     0.800     0.817       120
+       I-EVE      0.789     0.652     0.714        23
+       B-LOC      0.891     0.903     0.897       145
+       I-LOC      0.898     0.964     0.930        55
+       B-ORG      0.921     0.565     0.700        62
+       I-ORG      0.805     0.500     0.617        66
+
+   micro avg      0.849     0.744     0.793       934
+   macro avg      0.850     0.727     0.777       934
+weighted avg      0.848     0.744     0.788       934
+
+testing # 9  options =  ev_keywords|gaz|postag|entity
+skipping option  ev_keywords|gaz|postag|entity  in  ['arg']
+testing # 10  options =  arg_regex|ev_keywords|gaz|postag|entity
+skipping option  arg_regex|ev_keywords|gaz|postag|entity  in  ['arg']
+testing # 11  options =  ev_keywords|entity
+skipping option  ev_keywords|entity  in  ['arg']
+testing # 12  options =  entity|event
+skipping option  entity|event  in  ['arg']
+testing # 13  options =  org_regex|arg_regex|ev_keywords|gaz|postag|entity
+skipping option  org_regex|arg_regex|ev_keywords|gaz|postag|entity  in  ['arg']
+testing # 14  options =  org_regex|arg_regex|ev_keywords|gaz|postag|entity|event
+skipping option  org_regex|arg_regex|ev_keywords|gaz|postag|entity|event  in  ['arg']
+testing # 15  options =  ev_keywords|gaz|entity|event
+skipping option  ev_keywords|gaz|entity|event  in  ['arg']
+testing # 16  options =  ev_keywords|gaz|entity|event|arg
+skipping option  ev_keywords|gaz|entity|event|arg  in  ['arg']
+testing # 17  options =  ev_keywords|gaz|entity|event|arg|ismax
+skipping option  ev_keywords|gaz|entity|event|arg|ismax  in  ['arg']
+testing # 18  options =  arg_regex|ev_keywords|gaz|entity|event|arg|ismax
+skipping option  arg_regex|ev_keywords|gaz|entity|event|arg|ismax  in  ['arg']
+testing # 19  options =  org_regex|arg_regex|ev_keywords|gaz|entity|event|arg|ismax
+skipping option  org_regex|arg_regex|ev_keywords|gaz|entity|event|arg|ismax  in  ['arg']
+testing # 20  options =  ismax
+skipping option  ismax  in  ['arg']
+testing # 21  options =  ismax|arg
+skipping option  ismax|arg  in  ['arg']
+testing # 22  options =  ismax|arg|event
+skipping option  ismax|arg|event  in  ['arg']
+testing # 23  options =  ismax|arg|entity|event
+skipping option  ismax|arg|entity|event  in  ['arg']
+
+==================================EVENT
+
+
+In [76]: 
+
+In [76]: ablation(_mode='event')
+testing # 1  options =  
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['QUAKE-EVENT', 'ACCIDENT-EVENT', 'FLOOD-EVENT', 'FIRE-EVENT']
+train mode= event
+event options: 
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      1.000     0.789     0.882        38
+    FIRE-EVENT      0.933     0.875     0.903        32
+   FLOOD-EVENT      0.800     0.824     0.812        34
+   QUAKE-EVENT      0.793     0.852     0.821        27
+
+     micro avg      0.879     0.832     0.855       131
+     macro avg      0.882     0.835     0.855       131
+  weighted avg      0.889     0.832     0.857       131
+
+testing # 2  options =  gaz
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['QUAKE-EVENT', 'ACCIDENT-EVENT', 'FLOOD-EVENT', 'FIRE-EVENT']
+train mode= event
+event options: gaz
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      1.000     0.842     0.914        38
+    FIRE-EVENT      0.933     0.875     0.903        32
+   FLOOD-EVENT      0.800     0.824     0.812        34
+   QUAKE-EVENT      0.786     0.815     0.800        27
+
+     micro avg      0.880     0.840     0.859       131
+     macro avg      0.880     0.839     0.857       131
+  weighted avg      0.888     0.840     0.861       131
+
+testing # 3  options =  gaz|postag
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['QUAKE-EVENT', 'ACCIDENT-EVENT', 'FLOOD-EVENT', 'FIRE-EVENT']
+train mode= event
+event options: gaz|postag
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      1.000     0.737     0.848        38
+    FIRE-EVENT      0.867     0.812     0.839        32
+   FLOOD-EVENT      0.818     0.794     0.806        34
+   QUAKE-EVENT      0.885     0.852     0.868        27
+
+     micro avg      0.889     0.794     0.839       131
+     macro avg      0.892     0.799     0.840       131
+  weighted avg      0.896     0.794     0.839       131
+
+testing # 4  options =  org_regex|gaz|postag
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['QUAKE-EVENT', 'ACCIDENT-EVENT', 'FLOOD-EVENT', 'FIRE-EVENT']
+train mode= event
+event options: org_regex|gaz|postag
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      1.000     0.737     0.848        38
+    FIRE-EVENT      0.867     0.812     0.839        32
+   FLOOD-EVENT      0.818     0.794     0.806        34
+   QUAKE-EVENT      0.885     0.852     0.868        27
+
+     micro avg      0.889     0.794     0.839       131
+     macro avg      0.892     0.799     0.840       131
+  weighted avg      0.896     0.794     0.839       131
+
+testing # 5  options =  org_regex|arg_regex|gaz|postag
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['QUAKE-EVENT', 'ACCIDENT-EVENT', 'FLOOD-EVENT', 'FIRE-EVENT']
+train mode= event
+event options: org_regex|arg_regex|gaz|postag
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      1.000     0.737     0.848        38
+    FIRE-EVENT      0.867     0.812     0.839        32
+   FLOOD-EVENT      0.818     0.794     0.806        34
+   QUAKE-EVENT      0.885     0.852     0.868        27
+
+     micro avg      0.889     0.794     0.839       131
+     macro avg      0.892     0.799     0.840       131
+  weighted avg      0.896     0.794     0.839       131
+
+testing # 6  options =  org_regex|arg_regex|ev_keywords|gaz|postag
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['QUAKE-EVENT', 'ACCIDENT-EVENT', 'FLOOD-EVENT', 'FIRE-EVENT']
+train mode= event
+event options: org_regex|arg_regex|ev_keywords|gaz|postag
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      1.000     0.868     0.930        38
+    FIRE-EVENT      0.903     0.875     0.889        32
+   FLOOD-EVENT      0.824     0.824     0.824        34
+   QUAKE-EVENT      0.852     0.852     0.852        27
+
+     micro avg      0.896     0.855     0.875       131
+     macro avg      0.895     0.855     0.873       131
+  weighted avg      0.900     0.855     0.876       131
+
+testing # 7  options =  ev_keywords
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['QUAKE-EVENT', 'ACCIDENT-EVENT', 'FLOOD-EVENT', 'FIRE-EVENT']
+train mode= event
+event options: ev_keywords
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      1.000     0.868     0.930        38
+    FIRE-EVENT      0.935     0.906     0.921        32
+   FLOOD-EVENT      0.806     0.853     0.829        34
+   QUAKE-EVENT      0.793     0.852     0.821        27
+
+     micro avg      0.884     0.870     0.877       131
+     macro avg      0.884     0.870     0.875       131
+  weighted avg      0.891     0.870     0.879       131
+
+testing # 8  options =  ev_keywords|gaz|postag
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['QUAKE-EVENT', 'ACCIDENT-EVENT', 'FLOOD-EVENT', 'FIRE-EVENT']
+train mode= event
+event options: ev_keywords|gaz|postag
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      1.000     0.842     0.914        38
+    FIRE-EVENT      0.903     0.875     0.889        32
+   FLOOD-EVENT      0.824     0.824     0.824        34
+   QUAKE-EVENT      0.852     0.852     0.852        27
+
+     micro avg      0.895     0.847     0.871       131
+     macro avg      0.895     0.848     0.870       131
+  weighted avg      0.900     0.847     0.872       131
+
+testing # 9  options =  ev_keywords|gaz|postag|entity
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+merge the X_train's word.entity feature using y_train from previous train session
+['QUAKE-EVENT', 'ACCIDENT-EVENT', 'FLOOD-EVENT', 'FIRE-EVENT']
+train mode= event
+event options: ev_keywords|gaz|postag|entity
+merge the X_test's word.entity feature using y_test from previous train session
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      1.000     0.974     0.987        38
+    FIRE-EVENT      0.969     0.969     0.969        32
+   FLOOD-EVENT      1.000     1.000     1.000        34
+   QUAKE-EVENT      0.964     1.000     0.982        27
+
+     micro avg      0.985     0.985     0.985       131
+     macro avg      0.983     0.986     0.984       131
+  weighted avg      0.985     0.985     0.985       131
+
+testing # 10  options =  arg_regex|ev_keywords|gaz|postag|entity
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+merge the X_train's word.entity feature using y_train from previous train session
+['QUAKE-EVENT', 'ACCIDENT-EVENT', 'FLOOD-EVENT', 'FIRE-EVENT']
+train mode= event
+event options: arg_regex|ev_keywords|gaz|postag|entity
+merge the X_test's word.entity feature using y_test from previous train session
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      0.973     0.947     0.960        38
+    FIRE-EVENT      1.000     0.969     0.984        32
+   FLOOD-EVENT      1.000     1.000     1.000        34
+   QUAKE-EVENT      0.964     1.000     0.982        27
+
+     micro avg      0.985     0.977     0.981       131
+     macro avg      0.984     0.979     0.981       131
+  weighted avg      0.985     0.977     0.981       131
+
+testing # 11  options =  ev_keywords|entity
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+merge the X_train's word.entity feature using y_train from previous train session
+['QUAKE-EVENT', 'ACCIDENT-EVENT', 'FLOOD-EVENT', 'FIRE-EVENT']
+train mode= event
+event options: ev_keywords|entity
+merge the X_test's word.entity feature using y_test from previous train session
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      1.000     0.974     0.987        38
+    FIRE-EVENT      0.970     1.000     0.985        32
+   FLOOD-EVENT      1.000     1.000     1.000        34
+   QUAKE-EVENT      0.964     1.000     0.982        27
+
+     micro avg      0.985     0.992     0.989       131
+     macro avg      0.983     0.993     0.988       131
+  weighted avg      0.985     0.992     0.989       131
+
+testing # 12  options =  entity|event
+skipping option  entity|event  in  ['arg']
+testing # 13  options =  org_regex|arg_regex|ev_keywords|gaz|postag|entity
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+merge the X_train's word.entity feature using y_train from previous train session
+['QUAKE-EVENT', 'ACCIDENT-EVENT', 'FLOOD-EVENT', 'FIRE-EVENT']
+train mode= event
+event options: org_regex|arg_regex|ev_keywords|gaz|postag|entity
+merge the X_test's word.entity feature using y_test from previous train session
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      0.973     0.947     0.960        38
+    FIRE-EVENT      0.969     0.969     0.969        32
+   FLOOD-EVENT      1.000     0.971     0.985        34
+   QUAKE-EVENT      0.964     1.000     0.982        27
+
+     micro avg      0.977     0.969     0.973       131
+     macro avg      0.977     0.972     0.974       131
+  weighted avg      0.977     0.969     0.973       131
+
+testing # 14  options =  org_regex|arg_regex|ev_keywords|gaz|postag|entity|event
+skipping option  org_regex|arg_regex|ev_keywords|gaz|postag|entity|event  in  ['arg']
+testing # 15  options =  ev_keywords|gaz|entity|event
+skipping option  ev_keywords|gaz|entity|event  in  ['arg']
+testing # 16  options =  ev_keywords|gaz|entity|event|arg
+skipping option  ev_keywords|gaz|entity|event|arg  in  ['arg']
+testing # 17  options =  ev_keywords|gaz|entity|event|arg|ismax
+skipping option  ev_keywords|gaz|entity|event|arg|ismax  in  ['arg']
+testing # 18  options =  arg_regex|ev_keywords|gaz|entity|event|arg|ismax
+skipping option  arg_regex|ev_keywords|gaz|entity|event|arg|ismax  in  ['arg']
+testing # 19  options =  org_regex|arg_regex|ev_keywords|gaz|entity|event|arg|ismax
+skipping option  org_regex|arg_regex|ev_keywords|gaz|entity|event|arg|ismax  in  ['arg']
+testing # 20  options =  ismax
+skipping option  ismax  in  ['arg']
+testing # 21  options =  ismax|arg
+skipping option  ismax|arg  in  ['arg']
+testing # 22  options =  ismax|arg|event
+skipping option  ismax|arg|event  in  ['arg']
+testing # 23  options =  ismax|arg|entity|event
+skipping option  ismax|arg|entity|event  in  ['arg']
+
+=============================================ARG
+
+In [79]: ablation(_mode='arg')
+testing # 1  options =  
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['DeathVictim-Arg', 'Vehicle-Arg', 'Height-Arg', 'OfficerOfficial-Arg', 'Place-Arg', 'Time-Arg', 'Street-Arg', 'Strength-Arg']
+train mode= arg
+arg options: 
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.800     0.511     0.623        47
+        Vehicle-Arg      0.810     0.567     0.667        30
+         Height-Arg      0.791     0.739     0.764        46
+OfficerOfficial-Arg      0.866     0.586     0.699        99
+           Time-Arg      0.850     0.960     0.901       100
+          Place-Arg      0.816     0.796     0.806       206
+         Street-Arg      0.792     0.576     0.667        33
+       Strength-Arg      0.870     0.625     0.727        32
+
+          micro avg      0.828     0.728     0.775       593
+          macro avg      0.824     0.670     0.732       593
+       weighted avg      0.828     0.728     0.767       593
+
+testing # 2  options =  gaz
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['DeathVictim-Arg', 'Vehicle-Arg', 'Height-Arg', 'OfficerOfficial-Arg', 'Place-Arg', 'Time-Arg', 'Street-Arg', 'Strength-Arg']
+train mode= arg
+arg options: gaz
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.793     0.489     0.605        47
+        Vehicle-Arg      0.810     0.567     0.667        30
+         Height-Arg      0.791     0.739     0.764        46
+OfficerOfficial-Arg      0.905     0.576     0.704        99
+           Time-Arg      0.865     0.960     0.910       100
+          Place-Arg      0.847     0.830     0.838       206
+         Street-Arg      0.783     0.545     0.643        33
+       Strength-Arg      0.870     0.625     0.727        32
+
+          micro avg      0.847     0.735     0.787       593
+          macro avg      0.833     0.666     0.732       593
+       weighted avg      0.847     0.735     0.778       593
+
+testing # 3  options =  gaz|postag
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['DeathVictim-Arg', 'Vehicle-Arg', 'Height-Arg', 'OfficerOfficial-Arg', 'Place-Arg', 'Time-Arg', 'Street-Arg', 'Strength-Arg']
+train mode= arg
+arg options: gaz|postag
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.600     0.447     0.512        47
+        Vehicle-Arg      0.833     0.500     0.625        30
+         Height-Arg      0.745     0.761     0.753        46
+OfficerOfficial-Arg      0.879     0.586     0.703        99
+           Time-Arg      0.951     0.980     0.966       100
+          Place-Arg      0.837     0.796     0.816       206
+         Street-Arg      0.808     0.636     0.712        33
+       Strength-Arg      0.917     0.688     0.786        32
+
+          micro avg      0.843     0.732     0.783       593
+          macro avg      0.821     0.674     0.734       593
+       weighted avg      0.840     0.732     0.776       593
+
+testing # 4  options =  org_regex|gaz|postag
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['DeathVictim-Arg', 'Vehicle-Arg', 'Height-Arg', 'OfficerOfficial-Arg', 'Place-Arg', 'Time-Arg', 'Street-Arg', 'Strength-Arg']
+train mode= arg
+arg options: org_regex|gaz|postag
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.600     0.447     0.512        47
+        Vehicle-Arg      0.833     0.500     0.625        30
+         Height-Arg      0.745     0.761     0.753        46
+OfficerOfficial-Arg      0.812     0.657     0.726        99
+           Time-Arg      0.925     0.980     0.951       100
+          Place-Arg      0.827     0.791     0.809       206
+         Street-Arg      0.783     0.545     0.643        33
+       Strength-Arg      0.917     0.688     0.786        32
+
+          micro avg      0.825     0.737     0.778       593
+          macro avg      0.805     0.671     0.726       593
+       weighted avg      0.819     0.737     0.771       593
+
+testing # 5  options =  org_regex|arg_regex|gaz|postag
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['DeathVictim-Arg', 'Vehicle-Arg', 'Height-Arg', 'OfficerOfficial-Arg', 'Place-Arg', 'Time-Arg', 'Street-Arg', 'Strength-Arg']
+train mode= arg
+arg options: org_regex|arg_regex|gaz|postag
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.765     0.553     0.642        47
+        Vehicle-Arg      0.812     0.433     0.565        30
+         Height-Arg      0.700     0.761     0.729        46
+OfficerOfficial-Arg      0.802     0.657     0.722        99
+           Time-Arg      0.899     0.980     0.938       100
+          Place-Arg      0.832     0.791     0.811       206
+         Street-Arg      0.762     0.485     0.593        33
+       Strength-Arg      0.917     0.688     0.786        32
+
+          micro avg      0.825     0.739     0.779       593
+          macro avg      0.811     0.668     0.723       593
+       weighted avg      0.822     0.739     0.772       593
+
+testing # 6  options =  org_regex|arg_regex|ev_keywords|gaz|postag
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['DeathVictim-Arg', 'Vehicle-Arg', 'Height-Arg', 'OfficerOfficial-Arg', 'Place-Arg', 'Time-Arg', 'Street-Arg', 'Strength-Arg']
+train mode= arg
+arg options: org_regex|arg_regex|ev_keywords|gaz|postag
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.722     0.553     0.627        47
+        Vehicle-Arg      0.824     0.467     0.596        30
+         Height-Arg      0.740     0.804     0.771        46
+OfficerOfficial-Arg      0.802     0.657     0.722        99
+           Time-Arg      0.933     0.980     0.956       100
+          Place-Arg      0.836     0.791     0.813       206
+         Street-Arg      0.808     0.636     0.712        33
+       Strength-Arg      0.917     0.688     0.786        32
+
+          micro avg      0.835     0.752     0.791       593
+          macro avg      0.823     0.697     0.748       593
+       weighted avg      0.832     0.752     0.786       593
+
+testing # 7  options =  ev_keywords
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['DeathVictim-Arg', 'Vehicle-Arg', 'Height-Arg', 'OfficerOfficial-Arg', 'Place-Arg', 'Time-Arg', 'Street-Arg', 'Strength-Arg']
+train mode= arg
+arg options: ev_keywords
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.667     0.511     0.578        47
+        Vehicle-Arg      0.810     0.567     0.667        30
+         Height-Arg      0.791     0.739     0.764        46
+OfficerOfficial-Arg      0.865     0.646     0.740        99
+           Time-Arg      0.857     0.960     0.906       100
+          Place-Arg      0.826     0.782     0.803       206
+         Street-Arg      0.724     0.636     0.677        33
+       Strength-Arg      0.870     0.625     0.727        32
+
+          micro avg      0.820     0.737     0.776       593
+          macro avg      0.801     0.683     0.733       593
+       weighted avg      0.818     0.737     0.771       593
+
+testing # 8  options =  ev_keywords|gaz|postag
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+['DeathVictim-Arg', 'Vehicle-Arg', 'Height-Arg', 'OfficerOfficial-Arg', 'Place-Arg', 'Time-Arg', 'Street-Arg', 'Strength-Arg']
+train mode= arg
+arg options: ev_keywords|gaz|postag
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.677     0.447     0.538        47
+        Vehicle-Arg      0.833     0.500     0.625        30
+         Height-Arg      0.778     0.761     0.769        46
+OfficerOfficial-Arg      0.879     0.586     0.703        99
+           Time-Arg      0.951     0.980     0.966       100
+          Place-Arg      0.854     0.796     0.824       206
+         Street-Arg      0.821     0.697     0.754        33
+       Strength-Arg      0.913     0.656     0.764        32
+
+          micro avg      0.860     0.734     0.792       593
+          macro avg      0.838     0.678     0.743       593
+       weighted avg      0.855     0.734     0.784       593
+
+testing # 9  options =  ev_keywords|gaz|postag|entity
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+merge the X_train's word.entity feature using y_train from previous train session
+['DeathVictim-Arg', 'Vehicle-Arg', 'Height-Arg', 'OfficerOfficial-Arg', 'Place-Arg', 'Time-Arg', 'Street-Arg', 'Strength-Arg']
+train mode= arg
+arg options: ev_keywords|gaz|postag|entity
+merge the X_test's word.entity feature using y_test from previous train session
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.696     0.830     0.757        47
+        Vehicle-Arg      0.794     0.900     0.844        30
+         Height-Arg      1.000     0.870     0.930        46
+OfficerOfficial-Arg      0.830     0.939     0.882        99
+           Time-Arg      0.901     1.000     0.948       100
+          Place-Arg      0.909     0.917     0.913       206
+         Street-Arg      0.844     0.818     0.831        33
+       Strength-Arg      1.000     0.625     0.769        32
+
+          micro avg      0.873     0.902     0.887       593
+          macro avg      0.872     0.862     0.859       593
+       weighted avg      0.880     0.902     0.887       593
+
+testing # 10  options =  arg_regex|ev_keywords|gaz|postag|entity
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+merge the X_train's word.entity feature using y_train from previous train session
+['DeathVictim-Arg', 'Vehicle-Arg', 'Height-Arg', 'OfficerOfficial-Arg', 'Place-Arg', 'Time-Arg', 'Street-Arg', 'Strength-Arg']
+train mode= arg
+arg options: arg_regex|ev_keywords|gaz|postag|entity
+merge the X_test's word.entity feature using y_test from previous train session
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.655     0.766     0.706        47
+        Vehicle-Arg      0.781     0.833     0.806        30
+         Height-Arg      0.953     0.891     0.921        46
+OfficerOfficial-Arg      0.830     0.939     0.882        99
+           Time-Arg      0.917     1.000     0.957       100
+          Place-Arg      0.916     0.903     0.910       206
+         Street-Arg      0.871     0.818     0.844        33
+       Strength-Arg      1.000     0.750     0.857        32
+
+          micro avg      0.874     0.897     0.885       593
+          macro avg      0.866     0.863     0.860       593
+       weighted avg      0.879     0.897     0.886       593
+
+testing # 11  options =  ev_keywords|entity
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+merge the X_train's word.entity feature using y_train from previous train session
+['DeathVictim-Arg', 'Vehicle-Arg', 'Height-Arg', 'OfficerOfficial-Arg', 'Place-Arg', 'Time-Arg', 'Street-Arg', 'Strength-Arg']
+train mode= arg
+arg options: ev_keywords|entity
+merge the X_test's word.entity feature using y_test from previous train session
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.826     0.809     0.817        47
+        Vehicle-Arg      0.750     0.900     0.818        30
+         Height-Arg      1.000     0.870     0.930        46
+OfficerOfficial-Arg      0.809     0.939     0.869        99
+           Time-Arg      0.935     1.000     0.966       100
+          Place-Arg      0.946     0.927     0.936       206
+         Street-Arg      0.757     0.848     0.800        33
+       Strength-Arg      1.000     0.688     0.815        32
+
+          micro avg      0.891     0.909     0.900       593
+          macro avg      0.878     0.873     0.869       593
+       weighted avg      0.898     0.909     0.900       593
+
+testing # 12  options =  entity|event
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+merge the X_train's word.entity feature using y_train from previous train session
+merge the X_train's word.event feature using y_train from previous train session
+['DeathVictim-Arg', 'Vehicle-Arg', 'Height-Arg', 'OfficerOfficial-Arg', 'Place-Arg', 'Time-Arg', 'Street-Arg', 'Strength-Arg']
+train mode= arg
+arg options: entity|event
+merge the X_test's word.event feature using y_test from previous train session
+merge the X_test's word.entity feature using y_test from previous train session
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.826     0.809     0.817        47
+        Vehicle-Arg      0.730     0.900     0.806        30
+         Height-Arg      1.000     0.891     0.943        46
+OfficerOfficial-Arg      0.809     0.939     0.869        99
+           Time-Arg      0.901     1.000     0.948       100
+          Place-Arg      0.945     0.922     0.934       206
+         Street-Arg      0.757     0.848     0.800        33
+       Strength-Arg      1.000     0.688     0.815        32
+
+          micro avg      0.884     0.909     0.896       593
+          macro avg      0.871     0.875     0.866       593
+       weighted avg      0.891     0.909     0.896       593
+
+testing # 13  options =  org_regex|arg_regex|ev_keywords|gaz|postag|entity
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+merge the X_train's word.entity feature using y_train from previous train session
+['DeathVictim-Arg', 'Vehicle-Arg', 'Height-Arg', 'OfficerOfficial-Arg', 'Place-Arg', 'Time-Arg', 'Street-Arg', 'Strength-Arg']
+train mode= arg
+arg options: org_regex|arg_regex|ev_keywords|gaz|postag|entity
+merge the X_test's word.entity feature using y_test from previous train session
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.655     0.766     0.706        47
+        Vehicle-Arg      0.893     0.833     0.862        30
+         Height-Arg      0.953     0.891     0.921        46
+OfficerOfficial-Arg      0.827     0.919     0.871        99
+           Time-Arg      0.917     1.000     0.957       100
+          Place-Arg      0.949     0.903     0.925       206
+         Street-Arg      0.889     0.970     0.928        33
+       Strength-Arg      1.000     0.750     0.857        32
+
+          micro avg      0.890     0.902     0.896       593
+          macro avg      0.885     0.879     0.878       593
+       weighted avg      0.897     0.902     0.897       593
+
+testing # 14  options =  org_regex|arg_regex|ev_keywords|gaz|postag|entity|event
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+merge the X_train's word.entity feature using y_train from previous train session
+merge the X_train's word.event feature using y_train from previous train session
+['DeathVictim-Arg', 'Vehicle-Arg', 'Height-Arg', 'OfficerOfficial-Arg', 'Place-Arg', 'Time-Arg', 'Street-Arg', 'Strength-Arg']
+train mode= arg
+arg options: org_regex|arg_regex|ev_keywords|gaz|postag|entity|event
+merge the X_test's word.event feature using y_test from previous train session
+merge the X_test's word.entity feature using y_test from previous train session
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.667     0.766     0.713        47
+        Vehicle-Arg      0.862     0.833     0.847        30
+         Height-Arg      0.976     0.870     0.920        46
+OfficerOfficial-Arg      0.827     0.919     0.871        99
+           Time-Arg      0.901     1.000     0.948       100
+          Place-Arg      0.949     0.903     0.925       206
+         Street-Arg      0.889     0.970     0.928        33
+       Strength-Arg      1.000     0.625     0.769        32
+
+          micro avg      0.888     0.894     0.891       593
+          macro avg      0.884     0.861     0.865       593
+       weighted avg      0.895     0.894     0.891       593
+
+testing # 15  options =  ev_keywords|gaz|entity|event
+open annotation G:\Riset\Gatotkaca\Exp06-Extraction\train-test-v10\training.txt
+training 926 sentences
+merge the X_train's word.entity feature using y_train from previous train session
+merge the X_train's word.event feature using y_train from previous train session
+['DeathVictim-Arg', 'Vehicle-Arg', 'Height-Arg', 'OfficerOfficial-Arg', 'Place-Arg', 'Time-Arg', 'Street-Arg', 'Strength-Arg']
+train mode= arg
+arg options: ev_keywords|gaz|entity|event
+merge the X_test's word.event feature using y_test from previous train session
+merge the X_test's word.entity feature using y_test from previous train session
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.776     0.809     0.792        47
+        Vehicle-Arg      0.694     0.833     0.758        30
+         Height-Arg      1.000     0.870     0.930        46
+OfficerOfficial-Arg      0.838     0.939     0.886        99
+           Time-Arg      0.901     1.000     0.948       100
+          Place-Arg      0.935     0.908     0.921       206
+         Street-Arg      0.757     0.848     0.800        33
+       Strength-Arg      1.000     0.688     0.815        32
+
+          micro avg      0.880     0.899     0.889       593
+          macro avg      0.863     0.862     0.856       593
+       weighted avg      0.887     0.899     0.889       593
+
+testing # 16  options =  ev_keywords|gaz|entity|event|arg
+skipping option  ev_keywords|gaz|entity|event|arg  in  ['arg']
+testing # 17  options =  ev_keywords|gaz|entity|event|arg|ismax
+skipping option  ev_keywords|gaz|entity|event|arg|ismax  in  ['arg']
+testing # 18  options =  arg_regex|ev_keywords|gaz|entity|event|arg|ismax
+skipping option  arg_regex|ev_keywords|gaz|entity|event|arg|ismax  in  ['arg']
+testing # 19  options =  org_regex|arg_regex|ev_keywords|gaz|entity|event|arg|ismax
+skipping option  org_regex|arg_regex|ev_keywords|gaz|entity|event|arg|ismax  in  ['arg']
+testing # 20  options =  ismax
+skipping option  ismax  in  ['arg']
+testing # 21  options =  ismax|arg
+skipping option  ismax|arg  in  ['arg']
+testing # 22  options =  ismax|arg|event
+skipping option  ismax|arg|event  in  ['arg']
+testing # 23  options =  ismax|arg|entity|event
+skipping option  ismax|arg|entity|event  in  ['arg']
+
+In [80]: 
+
