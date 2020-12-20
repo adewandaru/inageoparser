@@ -65,7 +65,7 @@ Run this piece of code in ipython or spyder so that no GADM reload are needed.
 from itertools import chain
 from itertools import product
 from shapely.geometry.polygon import Polygon
-
+from globalmod import *
 import sklearn
 import scipy.stats
 import re
@@ -82,10 +82,10 @@ from sklearn_crfsuite import metrics
 
 
 debug_mode = False
-verbosity = 1
+
 dataset_folder = 'train-test-v10'
-import semantic_gazetteer
-import geospatial_driver
+from semantic_gazetteer import *
+from geospatial_driver import *
 import bio
 
 print("initialize Ina geoparser")
@@ -410,7 +410,7 @@ sent_idx = 0
 _prevadm = 'X'
 _prev_ismax = 'O'
 
-ploc_options = 'ismax|event|arg' # best so far is this combo
+ploc_options = 'ismax|event|arg|prop' # best so far is this combo
 
 #%%
 def word2features_ploc(sent, i):
@@ -500,7 +500,8 @@ def word2features_ploc(sent, i):
         features['word.org'] = org # is_org(word), #marker for ORG, ex. RSUD [Bangkalan] = PLOC of Bangkalan
     if 'arg_regex' in ploc_options:
         features['word.arg'] = arg # ???  what if we remove this ??? for event detection, the arg looks not very useful.
-
+    if 'prop' in ploc_options:
+        features['prop'] = 'T' if word_lower in ['di','ke','dari','menuju','sampai'] else 'F'
     return features
     
 #%%
@@ -1006,6 +1007,7 @@ def load_annotation(f, stripdocs = False, noploc = True, predictMode = False):
         
         
     '''
+    import os
     global MAXES
     global doc
     MAXES = [] # reset maximum adm level for each articles
@@ -1266,7 +1268,7 @@ def train_crf( cross_validation=False, skipFeatureBuilding=False, mini=False, rn
         We can still use annotated X_train to train.
         
     '''
-
+    
     crf = sklearn_crfsuite.CRF(
         algorithm = 'lbfgs',
         c1 = _c1,
@@ -1532,7 +1534,53 @@ def print_ambiguations(r, loc = None):
         else:
             if verbosity >= 2:
                 print('-- ' + item)
-            
+   
+#%%
+def saveXY(X,Y, filename):
+    assert len(X)==len(Y), "#sent length mismatch" 
+    lines = []
+    i = 0 
+    for x in X:
+        
+        assert len(x)==len(Y[i]), "#sent length mismatch" 
+        j = 0
+        for w in x:
+
+            wd = w.copy()
+            word = wd["word.lower()"]
+            del wd["word.lower()"]
+            del wd["bias"]
+            items = wd.items()
+            lines.append (word + ' ' + ' '.join([b(clean(it[0]))+str(it[1]) for it in items]) + ' ' + Y[i][j] )
+            j = j + 1
+        i = i + 1
+        
+    with open (filename, "w") as f:
+        f.write('\n'.join(lines))
+ 
+#%%
+        
+        
+#%%
+
+import string
+tabledict = dict.fromkeys(string.punctuation)
+
+tabledict['+'] = 'p'
+tabledict['-'] = 'm'
+'''
+tabledict[','] = ' '
+tabledict[':'] = ' '
+'''
+table = str.maketrans(tabledict)
+
+def clean(s):
+    global table
+    return s.translate(table)    
+
+def b(s):
+    return "[%s]"%s
+           
 #%%
 def print_ambiguations_pred(winner, t, loc):
     ''' print the predicted disambiguation from toponym t by lookup from winner list
@@ -1951,8 +1999,7 @@ def disambiguate_document_sm(sents, algorithm = "smcd-adm"):
                 #print("startcollect")
             widx = widx + 1
         sentidx = sentidx + 1
-    #toponyms = filter_duplicate_toponyms( toponyms ) 
-    #if len(toponyms) < 15: # cutoff due to exponential algorithm
+
     f_toponyms = list(set(toponyms))
     f_toponyms = f_toponyms[:15]
     winner = disambiguate_document( f_toponyms )
@@ -2233,7 +2280,7 @@ def predict(input_str, algorithm="smcd-adm"):
     X_entity = X.copy()
     y_entity = crf_entity.predict(X)
     
-    # pass the entity codes
+    # pass the entity codes for Toponym Disambiguation
     for sentidx, sent in enumerate(sents):
         for widx, w in enumerate(sent):
             try:
@@ -2519,63 +2566,7 @@ def train():
 #train()
     
 
-#%%
-test = """
-Kali Ciliwung Meluap, 17 RW di 8 Kelurahan Jakarta Terendam Banjir
 
-Sebanyak 17 RW yang tersebar di delapan kelurahan di Jakarta terendam banjir pada Selasa (19/5/2020) pagi
-Ketinggian air antara 10 sentimeter sampai 100 sentimeter
-
-Kepala Pusat Data dan Informasi Kebencanaan Badan Penanggulangan Bencana Daerah (BPBD) Jakarta M Insaf mengatakan, banjir disebabkan luapan Kali Ciliwung
- "Update pukul 03.00 WIB, ada 17 RW tergenang akibat luapan Kali Ciliwung," ujar Insaf saat dikonfirmasi
- Akibat banjir tersebut, ada 128 warga di Kelurahan Balekambang, Jakarta Timur, yang mengungsi di dua lokasi
- "Pengungsi 38 KK (kepala keluarga) dengan 128 jiwa, pos pengungsian dua lokasi di Balekambang," kata Insaf
- Berikut rincian banjir yang terjadi di Jakarta pada Selasa pagi ini:
-
-4 RW di Kelurahan Kampung Melayu, Jakarta Timur, ketinggian air 10-50 sentimeter
-2 RW di Kelurahan Bidara Cina, Jakarta Timur, ketinggian air 30-100 sentimeter
-6 RW di Kelurahan Cawang, Jakarta Timur, ketinggian air 20-150 sentimeter
-1 RW di Kelurahan Balekambang, Jakarta Timur, ketinggian air 40-100 sentimeter
-1 RW di Kelurahan Pejaten Timur, Jakarta Selatan, ketinggian air 100 sentimeter
-1 RW di Kelurahan Kebon Baru, Jakarta Selatan, ketinggian air 50 sentimeter
-1 RW di Kelurahan Manggarai, Jakarta Selatan, ketinggian air 50 sentimeter
-1 RW Kelurahan Pengadegan, Jakarta Selatan, ketinggian air 10-50 sentimeter
-
-"""
-#load_crf()
-#predict(test)
-
-t1 = """
-Corona di Banten 804 Kasus, Angka PDP dan ODP Turun -- Serang - Pasien terkonfirmasi Corona di Banten hari ini bertambah delapan orang. Sehingga keseluruhan angka positif jadi 804 kasus, 343 sudah sembuh dan 67 di antaranya meninggal dunia. Data yang disampaikan oleh Gugus Tugas Percepatan Penanganan COVID-19 pada pukul 18.00 WIB ini menunjukkan bahwa ada tren penurunan angka Pasien Dalam Pengawasan (PDP) dan Orang Dalam Pemantauan (ODP). Jumlah PDP turun drastis dari sebelumnya yang selalu bertambah puluhan orang, tapi hari ini hanya ada tambahan 7 pasien. Total PDP kemudian menjadi 2.413 orang. Rinciannya 1.095 sudah sembuh dan 268 meninggal dunia. Begitu pun dengan ODP yang biasanya bertambah sampai puluhan orang, maka hari ini hanya bertambah empat. Catatannya, ODP keseluruhan berjumlah 8.952 dan tinggal 963 yang masih dipantau oleh tim kesehatan di masing-masing daerah. Adapun dari 8 penambahan pasien positif terjadi di Kota Tangerang tiga pasien sehingga total ada 359 kasus di daerah ini. Kedua, pasien bertambah di Kabupaten Tangerang sebanyak 5 orang sehingga total ada 184 kasus. Sebagai catatan, daerah Tangerang Selatan (Tangsel) yang jadi salah satu episentrum Corona di Banten sejak Kamis (28/5) tak ada penambahan jumlah kasus. Daerah ini masih melaporkan angka kasus terpapar sebanyak 230 pasien. Selain Tangsel, beberapa hari ini pun daerah seperti Kota Serang angka pasien positif masih 11 kasus. Kabupaten Serang 10 kasus, Kota Cilegon 5 kasus, Pandeglang 3 kasus dan Lebak ada 2 kasus.
-"""
-
-
-
-t1 = """
-
-Bandung -- Tiga pria di Kota Bandung yang berboncengan satu motor tewas menabrak trotoar
-Insiden nahas itu terjadi Senin (30/7/2018) dini hari pukul 02.10 WIB di Jalan Kopo tepatnya di depan Rumah Sakit Immanuel, Kota Bandung
-Satu pengemudi yang belum diketahui identitasnya meninggal dunia di TKP
-Sementara dua lainnya tewas di rumah sakit
-
-"Awalnya hanya satu orang yang meninggal 
-Tetapi saat ini sudah tiga orang yang meninggal dunia," ucap Kasatlantas Polrestabes Bandung AKBP Agung Reza Pratidina saat dikonfirmasi via pesan singkat
-Agung menuturkan, peristiwa tersebut berawal saat korban mengendarai sepeda motor jenis bebek dengan membonceng dua rekannya
-Saat tiba di Jalan Kopo depan Rumah Sakit Immanuel, motor yang dikendarai oleng hingga menabrak trotoar dan menabrak pohon
-"Mereka datang dari arah Dago
-Saat di Tempat Kejadian Perkara (TKP) atau di jalan umum, pengemudi tidak dapat menguasai kendaraanya dengan wajar, sehingga menabrak," katanya
-Pengemudi tewas di TKP
-Sementara dua temannya yakni Kurniawan dan satu lagi belum diketahui identitasnya, meninggal di rumah sakit
-"Mereka berboncengan tiga," kata Agung
-
-"""
-
-t2 = """
-
-Bandung -- Kecelakaan mobil yang terjadi di Lengkong, Bandung, melibatkan truk dari Sumedang dengan dua mobil lokal
-Kecelakaan tersebut menewaskan 2 orang dan 2 orang terluka
-
-"""
 
 # in order to evaluate toponym resolution result from small corpus
 #disambiguate_trainingset(algorithm="sm")
@@ -2585,7 +2576,7 @@ Kecelakaan tersebut menewaskan 2 orang dan 2 orang terluka
 
 def ablation(_mode = 'entity'):
 # perform the ablation test for each of the four steps / modes in geoparsing.
-#
+# This is only for the research, not required for using the geoparser.
     global ploc_options
     global event_options
     global arg_options
@@ -2636,4 +2627,76 @@ def ablation(_mode = 'entity'):
 if __name__ == '__main__':
     print("event geoparser v.0.1")
 
+
+#%%
+test = """
+Kali Ciliwung Meluap, 17 RW di 8 Kelurahan Jakarta Terendam Banjir
+
+Sebanyak 17 RW yang tersebar di delapan kelurahan di Jakarta terendam banjir pada Selasa (19/5/2020) pagi
+Ketinggian air antara 10 sentimeter sampai 100 sentimeter
+
+Kepala Pusat Data dan Informasi Kebencanaan Badan Penanggulangan Bencana Daerah (BPBD) Jakarta M Insaf mengatakan, banjir disebabkan luapan Kali Ciliwung
+ "Update pukul 03.00 WIB, ada 17 RW tergenang akibat luapan Kali Ciliwung," ujar Insaf saat dikonfirmasi
+ Akibat banjir tersebut, ada 128 warga di Kelurahan Balekambang, Jakarta Timur, yang mengungsi di dua lokasi
+ "Pengungsi 38 KK (kepala keluarga) dengan 128 jiwa, pos pengungsian dua lokasi di Balekambang," kata Insaf
+ Berikut rincian banjir yang terjadi di Jakarta pada Selasa pagi ini:
+
+4 RW di Kelurahan Kampung Melayu, Jakarta Timur, ketinggian air 10-50 sentimeter
+2 RW di Kelurahan Bidara Cina, Jakarta Timur, ketinggian air 30-100 sentimeter
+6 RW di Kelurahan Cawang, Jakarta Timur, ketinggian air 20-150 sentimeter
+1 RW di Kelurahan Balekambang, Jakarta Timur, ketinggian air 40-100 sentimeter
+1 RW di Kelurahan Pejaten Timur, Jakarta Selatan, ketinggian air 100 sentimeter
+1 RW di Kelurahan Kebon Baru, Jakarta Selatan, ketinggian air 50 sentimeter
+1 RW di Kelurahan Manggarai, Jakarta Selatan, ketinggian air 50 sentimeter
+1 RW Kelurahan Pengadegan, Jakarta Selatan, ketinggian air 10-50 sentimeter
+
+"""
+
+test2 = """
+Indonesia mengumumkan 4.168 kasus positif baru #COVID19 pada tanggal 19 September 2020.
+Total: 240.687
+Kasus aktif: 56.889 (+480)
+Sembuh: 174.350 (+3.576)
+Meninggal dunia: 9.448 (+112)
+Orang yang dites: 1.698.202 (+21.554, 19,34% positive rate)
+Spesimen: 2.885.508 (+44.156)
+Suspek: 107.863 (+2.997)
+Sebaran 4.168 kasus baru:
+- Jakarta 988
+- Jabar 470
+- Jatim 379
+- Riau 303
+- Jateng 271
+- Papua 205
+- Aceh 175
+- Sulsel 167
+- Sumbar 159
+- Banten 128
+- Kaltim 111
+- Sumut 97
+- Bali 85
+- Kalsel 78
+- DIY 74
+- Sultra 59
+- NTB 53
+- Kalteng 50
+- Papbar 48
+- Kepri 45
+- Malut 41
+- Sumsel 38
+- Sulut 22
+- Gorontalo 22
+- Kalbar 21
+- Lampung 21
+- Maluku 19
+- Jambi 14
+- Sulteng 8
+- Bengkulu 7
+- Babel 4
+- Kaltara 3
+- NTT 2
+- Sulbar 1
+"""
+load_crf()
+predict(test)
 

@@ -1,0 +1,400 @@
+
+TABLES:
+=========
+SEED: 42
+
+entity options: gaz+postag
+              precision    recall  f1-score   support
+
+       B-ARG      0.767     0.723     0.744       173
+       I-ARG      0.740     0.753     0.746       174
+       B-EVE      0.811     0.920     0.862       112
+       I-EVE      0.833     0.682     0.750        22
+       B-LOC      0.912     0.912     0.912       125
+       I-LOC      0.898     0.898     0.898        49
+       B-ORG      0.722     0.732     0.727        71
+       I-ORG      0.590     0.630     0.609        73
+   micro avg      0.779     0.788     0.784       799
+   macro avg      0.784     0.781     0.781       799
+weighted avg      0.780     0.788     0.783       799
+
+
+entity options: org_regex+arg_regex+ev_keywords+gaz+postag
+              precision    recall  f1-score   support
+
+       B-ARG      0.865     0.775     0.817       173
+       I-ARG      0.823     0.776     0.799       174
+       B-EVE      0.827     0.938     0.879       112
+       I-EVE      0.938     0.682     0.789        22
+       B-LOC      0.933     0.896     0.914       125
+       I-LOC      1.000     0.857     0.923        49
+       B-ORG      0.744     0.859     0.797        71
+       I-ORG      0.650     0.890     0.751        73
+   micro avg      0.830     0.837     0.834       799
+   macro avg      0.847     0.834     0.834       799
+weighted avg      0.841     0.837     0.835       799
+
+
+
+event options: gaz+postag
+                  precision    recall  f1-score   support
+
+B-ACCIDENT-EVENT      0.955     0.913     0.933        23
+I-ACCIDENT-EVENT      1.000     0.500     0.667         2
+    B-FIRE-EVENT      0.767     0.958     0.852        24
+    I-FIRE-EVENT      1.000     1.000     1.000         6
+   B-FLOOD-EVENT      0.926     0.806     0.862        31
+   I-FLOOD-EVENT      1.000     1.000     1.000         5
+   B-QUAKE-EVENT      0.864     0.792     0.826        24
+   I-QUAKE-EVENT      1.000     0.400     0.571         5
+       micro avg      0.887     0.850     0.868       120
+       macro avg      0.939     0.796     0.839       120
+    weighted avg      0.898     0.850     0.864       120
+
+
+event options: ev_keywords+entity
+                  precision    recall  f1-score   support
+
+B-ACCIDENT-EVENT      1.000     1.000     1.000        23
+I-ACCIDENT-EVENT      0.667     1.000     0.800         2
+    B-FIRE-EVENT      0.923     1.000     0.960        24
+    I-FIRE-EVENT      1.000     1.000     1.000         6
+   B-FLOOD-EVENT      1.000     1.000     1.000        31
+   I-FLOOD-EVENT      1.000     1.000     1.000         5
+   B-QUAKE-EVENT      1.000     1.000     1.000        24
+   I-QUAKE-EVENT      1.000     1.000     1.000         5
+       micro avg      0.976     1.000     0.988       120
+       macro avg      0.949     1.000     0.970       120
+    weighted avg      0.979     1.000     0.989       120    
+
+
+arg options: gaz+postag
+                       precision    recall  f1-score   support
+
+    B-DeathVictim-Arg      0.455     0.294     0.357        17
+    I-DeathVictim-Arg      0.458     0.440     0.449        25
+         B-Height-Arg      0.556     0.556     0.556         9
+         I-Height-Arg      0.538     0.636     0.583        11
+B-OfficerOfficial-Arg      0.540     0.614     0.574        44
+I-OfficerOfficial-Arg      0.410     0.800     0.542        40
+          B-Place-Arg      0.855     0.847     0.851       111
+          I-Place-Arg      0.589     0.750     0.660        44
+         B-Street-Arg      0.778     0.700     0.737        10
+         I-Street-Arg      0.714     0.909     0.800        11
+       B-Strength-Arg      0.875     0.875     0.875         8
+       I-Strength-Arg      0.857     1.000     0.923        12
+           B-Time-Arg      0.922     0.959     0.940        49
+           I-Time-Arg      0.833     1.000     0.909        30
+        B-Vehicle-Arg      0.733     0.550     0.629        20
+        I-Vehicle-Arg      0.000     0.000     0.000         3
+            micro avg      0.676     0.761     0.716       444
+            macro avg      0.632     0.683     0.649       444
+         weighted avg      0.696     0.761     0.719       444
+
+
+arg options: ev_keywords+gaz+entity+event
+                       precision    recall  f1-score   support
+
+    B-DeathVictim-Arg      0.875     0.824     0.848        17
+    I-DeathVictim-Arg      0.880     0.880     0.880        25
+         B-Height-Arg      0.750     1.000     0.857         9
+         I-Height-Arg      0.733     1.000     0.846        11
+B-OfficerOfficial-Arg      0.914     0.727     0.810        44
+I-OfficerOfficial-Arg      0.784     1.000     0.879        40
+          B-Place-Arg      0.938     0.946     0.942       111
+          I-Place-Arg      0.786     0.750     0.767        44
+         B-Street-Arg      0.556     1.000     0.714        10
+         I-Street-Arg      0.423     1.000     0.595        11
+       B-Strength-Arg      1.000     1.000     1.000         8
+       I-Strength-Arg      1.000     1.000     1.000        12
+           B-Time-Arg      1.000     1.000     1.000        49
+           I-Time-Arg      1.000     1.000     1.000        30
+        B-Vehicle-Arg      0.905     0.950     0.927        20
+        I-Vehicle-Arg      0.667     0.667     0.667         3
+            micro avg      0.857     0.917     0.886       444
+            macro avg      0.826     0.921     0.858       444
+         weighted avg      0.881     0.917     0.891       444
+
+ploc options: arg_regex+org_regex+ev_keywords+gaz+entity+event+arg+ismax
+              precision    recall  f1-score   support
+
+       B-LOC      0.708     0.850     0.773        40
+       I-LOC      1.000     1.000     1.000        18
+      B-PLOC      0.922     0.835     0.877        85
+      I-PLOC      1.000     1.000     1.000        31
+   micro avg      0.885     0.885     0.885       174
+   macro avg      0.908     0.921     0.912       174
+weighted avg      0.895     0.885     0.887       174
+
+ploc options: gaz+postag
+              precision    recall  f1-score   support
+
+       B-LOC      0.470     0.775     0.585        40
+       I-LOC      0.591     0.722     0.650        18
+      B-PLOC      0.905     0.671     0.770        85
+      I-PLOC      0.913     0.677     0.778        31
+   micro avg      0.701     0.701     0.701       174
+   macro avg      0.720     0.711     0.696       174
+weighted avg      0.774     0.701     0.717       174
+
+
+ABLATION RESULT:
+================
+
+Out[908]: 
+{'ncrf:': True,
+ 'entity:': {'': 0.8157015382232108,
+  'gaz': 0.8212250050395495,
+  'gaz+postag': 0.8076190358937003,
+  'org_regex+gaz+postag': 0.8249629084956561,
+  'org_regex+arg_regex+gaz+postag': 0.8203818317381278,
+  'org_regex+arg_regex+ev_keywords+gaz+postag': 0.834906046850458,
+  'ev_keywords': 0.825804504123227,
+  'ev_keywords+gaz+postag': 0.8262263688274037},
+ 'event:': {'': 0.8989888764404609,
+  'gaz': 0.8852045454545454,
+  'gaz+postag': 0.8776423486666073,
+  'org_regex+gaz+postag': 0.8905071379428964,
+  'org_regex+arg_regex+gaz+postag': 0.8973488410996077,
+  'org_regex+arg_regex+ev_keywords+gaz+postag': 0.9091916676632347,
+  'ev_keywords': 0.8991545138610564,
+  'ev_keywords+gaz+postag': 0.8840907577201573,
+  'ev_keywords+gaz+postag+entity': 0.9919354838709677,
+  'arg_regex+ev_keywords+gaz+postag+entity': 0.9797619047619047,
+  'ev_keywords+entity': 0.9919871794871794,
+  'org_regex+arg_regex+ev_keywords+gaz+postag+entity': 0.9839039548022599},
+ 'arg:': {'': 0.7685953993444197,
+  'gaz': 0.7885864382198783,
+  'gaz+postag': 0.7588884503257921,
+  'org_regex+gaz+postag': 0.800001068043815,
+  'org_regex+arg_regex+gaz+postag': 0.806470514053498,
+  'org_regex+arg_regex+ev_keywords+gaz+postag': 0.7804355851006676,
+  'ev_keywords': 0.7848391959196023,
+  'ev_keywords+gaz+postag': 0.7848837090402772,
+  'ev_keywords+gaz+postag+entity': 0.8914008663384525,
+  'arg_regex+ev_keywords+gaz+postag+entity': 0.9019611282240231,
+  'ev_keywords+entity': 0.8939372353964647,
+  'entity+event': 0.9064869745834438,
+  'org_regex+arg_regex+ev_keywords+gaz+postag+entity': 0.8999962310326229,
+  'org_regex+arg_regex+ev_keywords+gaz+postag+entity+event': 0.8981233475535926,
+  'ev_keywords+gaz+entity+event': 0.8955197704263917},
+ 'ploc:': {'': 0.6703370036703371,
+  'gaz': 0.773065373065373,
+  'gaz+postag': 0.7228123903403834,
+  'org_regex+gaz+postag': 0.75,
+  'org_regex+arg_regex+gaz+postag': 0.8559216296680626,
+  'org_regex+arg_regex+ev_keywords+gaz+postag': 0.8625730994152047,
+  'ev_keywords': 0.6656714561174348,
+  'ev_keywords+gaz+postag': 0.6911784511784512,
+  'ev_keywords+gaz+postag+entity': 0.8304223766202192,
+  'arg_regex+ev_keywords+gaz+postag+entity': 0.8796941990805311,
+  'ev_keywords+entity': 0.8275862068965517,
+  'entity+event': 0.8074116743471583,
+  'org_regex+arg_regex+ev_keywords+gaz+postag+entity': 0.8603521554341226,
+  'org_regex+arg_regex+ev_keywords+gaz+postag+entity+event': 0.866905273204486,
+  'ev_keywords+gaz+entity+event': 0.8133944486885664,
+  'ev_keywords+gaz+entity+event+arg': 0.7732703377864667,
+  'ev_keywords+gaz+entity+event+arg+ismax': 0.7898868049243989,
+  'arg_regex+ev_keywords+gaz+entity+event+arg+ismax': 0.8631343207614395,
+  'org_regex+arg_regex+ev_keywords+gaz+entity+event+arg+ismax': 0.8692755825734549,
+  'ismax': 0.7674074074074074,
+  'ismax+arg': 0.8882991793208512,
+  'ismax+arg+event': 0.8980414746543779,
+  'ismax+arg+entity+event': 0.7760421040844322}}
+
+
+  entity options: gaz+postag
+              precision    recall  f1-score   support
+
+         LOC      0.890     0.885     0.888       174
+         ARG      0.767     0.741     0.754       347
+         ORG      0.789     0.674     0.727       144
+         EVE      0.887     0.761     0.819       134
+
+   micro avg      0.818     0.763     0.790       799
+   macro avg      0.833     0.765     0.797       799
+weighted avg      0.818     0.763     0.789       799
+
+
+entity options: gaz+postag
+['ARG', 'EVE', 'LOC', 'ORG']
+start testing/evaluation
+entity options: gaz+postag
+              precision    recall  f1-score   support
+
+         LOC      0.890     0.885     0.888       174
+         ARG      0.767     0.741     0.754       347
+         ORG      0.789     0.674     0.727       144
+         EVE      0.887     0.761     0.819       134
+
+   micro avg      0.818     0.763     0.790       799
+   macro avg      0.833     0.765     0.797       799
+weighted avg      0.818     0.763     0.789       799
+
+
+entity options: org_regex+arg_regex+ev_keywords+gaz+postag
+              precision    recall  f1-score   support
+
+         LOC      0.895     0.885     0.890       174
+         ARG      0.793     0.764     0.778       347
+         ORG      0.771     0.819     0.795       144
+         EVE      0.862     0.836     0.848       134
+
+   micro avg      0.823     0.812     0.817       799
+   macro avg      0.830     0.826     0.828       799
+weighted avg      0.823     0.812     0.817       799
+
+
+event options: gaz+postag
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      1.000     1.000     1.000        25
+    FIRE-EVENT      0.774     0.800     0.787        30
+   FLOOD-EVENT      0.909     0.833     0.870        36
+   QUAKE-EVENT      0.909     0.690     0.784        29
+
+     micro avg      0.892     0.825     0.857       120
+     macro avg      0.898     0.831     0.860       120
+  weighted avg      0.894     0.825     0.855       120
+
+
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      0.926     1.000     0.962        25
+    FIRE-EVENT      0.909     1.000     0.952        30
+   FLOOD-EVENT      1.000     0.972     0.986        36
+   QUAKE-EVENT      1.000     0.931     0.964        29
+
+     micro avg      0.959     0.975     0.967       120
+     macro avg      0.959     0.976     0.966       120
+  weighted avg      0.962     0.975     0.967       120
+
+
+                       precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.793     0.548     0.648        42
+        Vehicle-Arg      0.750     0.391     0.514        23
+         Height-Arg      0.615     0.800     0.696        20
+OfficerOfficial-Arg      0.819     0.678     0.742        87
+           Time-Arg      0.926     0.949     0.938        79
+          Place-Arg      0.854     0.809     0.831       173
+         Street-Arg      0.692     0.857     0.766        21
+       Strength-Arg      0.952     1.000     0.976        20
+
+          micro avg      0.835     0.774     0.804       465
+          macro avg      0.800     0.754     0.764       465
+       weighted avg      0.836     0.774     0.798       465
+
+
+
+       NRFPP
+       =====
+
+entity options: gaz+postag
+              precision    recall  f1-score   support
+
+         LOC      0.929     0.897     0.912       174
+         ARG      0.762     0.767     0.764       347
+         ORG      0.697     0.847     0.765       144
+         EVE      0.850     0.888     0.869       134
+   micro avg      0.797     0.830     0.813       799
+   macro avg      0.809     0.850     0.828       799
+weighted avg      0.801     0.830     0.814       799
+
+entity options: org_regex+arg_regex+ev_keywords+gaz+postag
+              precision    recall  f1-score   support
+
+         LOC      0.951     0.897     0.923       174
+         ARG      0.857     0.709     0.776       347
+         ORG      0.787     0.847     0.816       144
+         EVE      0.855     0.925     0.889       134
+   micro avg      0.863     0.811     0.836       799
+   macro avg      0.863     0.845     0.851       799
+weighted avg      0.865     0.811     0.834       799
+
+
+event options: gaz+postag
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      1.000     1.000     1.000        25
+    FIRE-EVENT      0.806     0.967     0.879        30
+   FLOOD-EVENT      0.886     0.861     0.873        36
+   QUAKE-EVENT      0.885     0.793     0.836        29
+     micro avg      0.885     0.900     0.893       120
+     macro avg      0.894     0.905     0.897       120
+  weighted avg      0.889     0.900     0.892       120
+
+event options: ev_keywords+entity
+                precision    recall  f1-score   support
+
+ACCIDENT-EVENT      0.926     1.000     0.962        25
+    FIRE-EVENT      1.000     1.000     1.000        30
+   FLOOD-EVENT      1.000     1.000     1.000        36
+   QUAKE-EVENT      1.000     1.000     1.000        29
+     micro avg      0.984     1.000     0.992       120
+     macro avg      0.981     1.000     0.990       120
+  weighted avg      0.985     1.000     0.992       120
+
+event options: entity
+                  precision    recall  f1-score   support
+
+ACCIDENT-EVENT      0.962     1.000     0.980        25
+    FIRE-EVENT      0.968     1.000     0.984        30
+   FLOOD-EVENT      1.000     0.972     0.986        36
+   QUAKE-EVENT      1.000     1.000     1.000        29
+     micro avg      0.983     0.992     0.988       120
+     macro avg      0.982     0.993     0.987       120
+  weighted avg      0.984     0.992     0.988       120
+
+arg options: gaz+postag
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.615     0.381     0.471        42
+        Vehicle-Arg      0.625     0.435     0.513        23
+         Height-Arg      0.875     0.700     0.778        20
+OfficerOfficial-Arg      0.711     0.678     0.694        87
+           Time-Arg      0.927     0.962     0.944        79
+          Place-Arg      0.873     0.832     0.852       173
+         Street-Arg      0.708     0.810     0.756        21
+       Strength-Arg      0.952     1.000     0.976        20
+          micro avg      0.822     0.766     0.793       465
+          macro avg      0.786     0.725     0.748       465
+       weighted avg      0.812     0.766     0.785       465
+
+       
+
+arg options: entity+event
+                     precision    recall  f1-score   support
+
+    DeathVictim-Arg      0.760     0.905     0.826        42
+        Vehicle-Arg      1.000     0.913     0.955        23
+         Height-Arg      0.833     1.000     0.909        20
+OfficerOfficial-Arg      0.849     0.839     0.844        87
+           Time-Arg      1.000     1.000     1.000        79
+          Place-Arg      0.900     0.884     0.892       173
+         Street-Arg      0.526     0.952     0.678        21
+       Strength-Arg      1.000     1.000     1.000        20
+          micro avg      0.869     0.912     0.890       465
+          macro avg      0.859     0.937     0.888       465
+       weighted avg      0.884     0.912     0.894       465
+
+ploc options: gaz+postag
+
+              precision    recall  f1-score   support
+
+        PLOC      0.835     0.784     0.809       116
+         LOC      0.528     0.655     0.585        58
+   micro avg      0.713     0.741     0.727       174
+   macro avg      0.681     0.720     0.697       174
+weighted avg      0.733     0.741     0.734       174
+
+       ploc options: ismax+arg+event
+
+              precision    recall  f1-score   support
+
+        PLOC      0.971     0.879     0.923       116
+         LOC      0.809     0.948     0.873        58
+   micro avg      0.908     0.902     0.905       174
+   macro avg      0.890     0.914     0.898       174
+weighted avg      0.917     0.902     0.906       174
+

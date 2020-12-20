@@ -8,30 +8,33 @@ import geopandas as gpd
 import pandas as pd
 import re 
 
+from globalmod import *
 
 #L0 = 
 #L1 = gpd.read_file('D:\Riset\Gatotkaca\Exp-16-Geonames\gadm36_USA_shp\gadm36_USA_1.shp')
 #L2 = gpd.read_file('D:\Riset\Gatotkaca\Exp-16-Geonames\gadm36_USA_shp\gadm36_USA_2.shp')
-if  '__geospatial__' not in vars() and '__geospatial__' not in globals():
 
-    print("loading global GADM database...")
-    ALL = gpd.read_file('gadm36_shp\gadm36.shp')
-    NAME0 = ALL.set_index('NAME_0')
-    NAME1 = ALL.set_index('NAME_1')
-    NAME2 = ALL.set_index('NAME_2')
-    NAME3 = ALL.set_index('NAME_3')
-    NAME4 = ALL.set_index('NAME_4')
-    NAMES = [NAME0, NAME1, NAME2, NAME3, NAME4]
+print("load")
 
-    COUNTRIES = []
-    COUNTRIES = pd.read_csv(r"translations\COUNTRIES-ID.csv")  
-    COUNTRIES = COUNTRIES.set_index('ID')
-    
-    US = pd.read_csv("uscities.csv")
-    US = US.set_index("city")
-    
-    __geospatial__ = True
-    
+
+print("..loading global GADM database...")
+ALL = gpd.read_file('..\gadm36_shp\gadm36.shp')
+NAME0 = ALL.set_index('NAME_0')
+NAME1 = ALL.set_index('NAME_1')
+NAME2 = ALL.set_index('NAME_2')
+NAME3 = ALL.set_index('NAME_3')
+NAME4 = ALL.set_index('NAME_4')
+NAMES = [NAME0, NAME1, NAME2, NAME3, NAME4]
+
+COUNTRIES = []
+COUNTRIES = pd.read_csv(r"translations\COUNTRIES-ID.csv")  
+COUNTRIES = COUNTRIES.set_index('ID')
+
+US = pd.read_csv("uscities.csv")
+US = US.set_index("city")
+
+__geospatial__ = True
+
 print("GADM database loaded.")
 
 def reload():
@@ -409,10 +412,11 @@ def findmaxdist_adm( list_coords, list_adm ):
     ''' implements the SpatialMinimality CentroidDistance with Adm .
         the bigger the administrative level, it should be prioritised.
         meaning, the more a tuple has bigger adm level, the more it should be having lesser 'distance'
-    '''
+    
     if verbosity >= 3:
         print ("list_coords", list_coords)
         print ("list_adm", list_adm)
+    '''
     (cx, cy) = centroid_coords2(list_coords)
     maxdist = 0
     
@@ -428,9 +432,10 @@ def findmaxdist_adm( list_coords, list_adm ):
     return maxdist    
 
 def findmaxdist(list_coords):
-    ''' implements the SpatialMinimality "CentroidDistance" '''
+    ''' implements the SpatialMinimality "CentroidDistance" 
     if verbosity >= 3:
         print ("findmaxdist", list_coords)
+    '''
     (cx, cy) = centroid_coords2(list_coords)
     maxdist = 0
     
