@@ -1,14 +1,18 @@
 # INA-Geoparser
 Hello,
 We are releasing the first (Indonesian) Event Geoparser. This is to accompany our paper.  
-Extending Geoparsing with Event Extraction and Pseudo Location Entity Identification from Indonesian News Corpus 
+
+Dewandaru, Agung, Dwi Hendratmo Widyantoro, and Saiful Akbar. "Event Geoparser with Pseudo-Location Entity Identification and Numerical Argument Extraction Implementation and Evaluation in Indonesian News Domain." ISPRS International Journal of Geo-Information 9.12 (2020): 712.
 
 ## contents
-Corpus for Extended Geoparsing with Event Extraction (Indonesian): (small_corpus.txt)  
-Result of Evaluation (RESULT V.txt)  
-Main Sources (event-geoparser.py)  
+Corpus for Extended Geoparsing with Event Extraction (Indonesian): (train-test-v11/training.txt)  
+Main Sources (egeoparser.py)  
 Aggregated Topic Model (topicmerging.py) 
 and its pretrained model (mergedtopics.pickle)  
+
+## Requirements
+This geoparser needs either sklearn-crfsuite or NCRF++ library.
+If you want to use NCRF++, put the NCRF++ in the correct folder setup. 
 
 ## how to run
 
@@ -43,4 +47,6 @@ load_crf()
 predict(test)
 
 ```
+!(./mainresult/resultmap.png)
+
 
