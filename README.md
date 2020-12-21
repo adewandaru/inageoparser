@@ -47,6 +47,6 @@ load_crf()
 predict(test)
 
 ```
-!(./mainresult/resultmap.png)
+![main result](./mainresult/resultmap.png)
 
 
