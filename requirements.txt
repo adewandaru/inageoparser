@@ -157,7 +157,7 @@ pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
 pycrypto==2.6.1
 pycurl==7.43.0.3
 pyflakes==2.2.0
-Pygments==2.6.1
+Pygments==2.7.4
 pyLDAvis==2.1.2
 pylint==2.3.1
 pyodbc===4.0.0-unsupported
