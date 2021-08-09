@@ -179,7 +179,7 @@ python-dateutil==2.8.1
 pytz==2020.1
 pyvis==0.1.8.2
 PyWavelets==1.1.1
-pywin32==227
+pywin32==301
 pywin32-ctypes @ file:///C:/ci/pywin32-ctypes_1594392691209/work
 pywinpty==0.5.7
 PyYAML==5.3.1
